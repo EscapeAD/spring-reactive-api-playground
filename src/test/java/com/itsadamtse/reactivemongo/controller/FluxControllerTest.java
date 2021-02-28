@@ -81,19 +81,19 @@ public class FluxControllerTest {
 
     @Test
     public void fluxStream(){
-
-        Flux<Integer> streamFlux = webTestClient.get().uri("/flux/stream")
+        // infinite stream test
+        Flux<Long> streamFlux = webTestClient.get().uri("/flux/stream")
                 .accept(MediaType.APPLICATION_STREAM_JSON)
                 .exchange()
                 .expectStatus().isOk()
-                .returnResult(Integer.class)
+                .returnResult(Long.class)
                 .getResponseBody();
 
 
         StepVerifier.create(streamFlux)
-                .expectNext(1)
-                .expectNext(2)
-                .expectNext(3)
+                .expectNext(0L)
+                .expectNext(1L)
+                .expectNext(2L)
                 .thenCancel()
                 .verify();
     }

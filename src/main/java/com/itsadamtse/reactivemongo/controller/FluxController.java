@@ -23,9 +23,8 @@ public class FluxController {
         stream using deprecated MediaType.APPLICATION_STREAM_JSON_VALUE
     */
     @GetMapping(value = "/stream", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
-    public Flux<Integer> fluxStreamResp(){
-        return Flux.just(1,2,3,4)
-                .delayElements(Duration.ofSeconds(1))
+    public Flux<Long> fluxStreamResp(){
+        return Flux.interval(Duration.ofSeconds(1))
                 .log();
     }
 
