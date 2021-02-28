@@ -17,4 +17,12 @@ public class CoinServiceClientTest {
         System.out.println("CoinList: " + coinList);
         Assertions.assertTrue(coinList.size() > 0);
     }
+
+    @Test
+    public void getCoin(){
+        String bitcoin = "bitcoin";
+        Coin coin = coinServiceClient.retrieveCoin(bitcoin);
+        System.out.println("Coin: "+ coin);
+        Assertions.assertEquals("Bitcoin", coin.getName());
+    }
 }
